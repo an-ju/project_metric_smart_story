@@ -31,11 +31,11 @@ class ProjectMetricSmartStory
 
   def image
     @raw_data ||= stories
-    @image ||= { chartType: 'point_estimation',
-                 titleText: 'Point distribution',
+    @image ||= { chartType: 'smart_story',
+                 titleText: 'Story Descriptions',
                  data: {
-                   smart_stories: smart_stories,
-                   non_smart_stories: non_smart_stories
+                   smart_stories: digest_of(smart_stories),
+                   non_smart_stories: digest_of(non_smart_stories)
                  } }.to_json
   end
 
@@ -59,5 +59,9 @@ class ProjectMetricSmartStory
 
   def check_smart(s)
     s.nil? ? nil : /as.*so[ ]?that.*/.match(s.downcase)
+  end
+
+  def digest_of(stories)
+    stories.map { |s| { title: s['title'], description: s['description'], id: s['id'] } }
   end
 end

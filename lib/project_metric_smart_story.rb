@@ -50,11 +50,11 @@ class ProjectMetricSmartStory
   end
 
   def smart_stories
-    @raw_data.reject { |s| check_smart(s['description']).nil? }
+    @raw_data.reject { |s| check_smart(s['description']).nil? && check_smart(s['title']).nil? }
   end
 
   def non_smart_stories
-    @raw_data.select { |s| check_smart(s['description']).nil? }
+    @raw_data.select { |s| check_smart(s['description']).nil? && check_smart(s['title']).nil? }
   end
 
   def check_smart(s)

@@ -58,7 +58,7 @@ class ProjectMetricSmartStory
   end
 
   def check_smart(s)
-    s.nil? ? nil : /as.*so[ ]?that.*/.match(s.downcase)
+    s.nil? ? nil : /.*as.*so.*/.match(s.downcase)
   end
 
   def digest_of(stories)
